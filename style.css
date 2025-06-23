@@ -1,0 +1,162 @@
+body {
+    background-color: #0e0e0e;
+    font-family: sans-serif;
+    animation: hello 1.5s ease 0s 1 normal forwards;
+}
+
+h1 {
+    font-size: 365%;
+    text-align: center;
+    color:#ac7800;
+}
+
+
+p {
+    color: #ac7800;
+    font-size: 150%;
+    cursor: default;
+}
+
+
+#z {
+    font-size: 110%;
+    text-align: center;
+    margin-top: -20px;
+    color: rgb(100, 100, 100);
+    cursor: auto;
+}
+
+.a {
+    width: auto;
+    justify-content: center;
+    display: flex;
+    gap: 30px
+}
+
+.aa {
+    border: 3px solid #ac7800;
+    border-radius: 30px;
+    color: #ac7800;
+    font-size: 150%;
+    text-align: center;
+    width: 330px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.b {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+#bb {
+    background-color: #0e0e0e;
+    border: 3px solid #ac7800;
+    color: #ac7800;
+    width: 220px;
+    height: 60px;
+    padding-left: 25px;
+    font-size: 150%;
+    border-radius: 30px;   
+}
+
+#bb:focus {
+    outline: none;
+}
+
+.c {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+}
+
+.cc {
+    display: flex;
+    color: #ac7800;
+    font-size: 150%;
+    padding-top: 24px;
+    gap: 20px;
+}
+
+
+button {
+    padding: auto;
+    text-align: center;
+    font-size: 115%;
+    font-family: sans-serif;
+    height: 60px;
+    width: 90px;
+    border: none;
+    color: #0e0e0e;
+    background-color: #ac7800;
+    border-radius: 30px 30px 30px 30px;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px #0a0a0a;
+}
+
+button:hover {
+    box-shadow: 0px 0px 6px #5c4000;
+    animation: shake 1.5s linear 0s infinite normal forwards;
+}
+
+
+
+.checkbox input {
+    display: none;
+}
+
+.checkbox span {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ac7800;
+    border-radius: 4px;
+    background-color: transparent;
+    display: inline-block;
+    position: relative;
+}
+
+.checkbox input:checked + span::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid #ac7800;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+
+
+
+
+
+@keyframes hello {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes shake {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.07);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}

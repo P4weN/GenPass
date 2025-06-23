@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free password generator">
+    <meta name="keywords" content="Genpass, generator, password, hasło">
+    <meta name="author" content="PaweN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenPass</title>
+    <link rel="shortcut icon" href="Genpass.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <br>
+    <h1>Generator haseł <i>GenPass</i></h1>
+    <p id="z"><b>Utwórz silne hasło, aby zabezpieczyć konta w Internecie.</b></p>
+    <br>
+    <br>
+    <div class="a">
+        <div class="aa">
+            <label>Twoje hasło</label>
+        </div>
+        <button><b>Generuj</b></button>
+        <button><b>Kopiuj</b></button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="b">
+        <p>Długość hasła:</p>
+        <input type="number" min="1" value="12" id="bb">
+    </div>
+    <br>
+    <br>
+    <div class="c">
+        <p>Zestaw znaków: </p>
+        <div class="cc">
+            <label class="checkbox">
+                <input type="checkbox">
+                <span></span> 
+                <b>ABC</b>
+            </label>
+            <label class="checkbox">
+                <input type="checkbox">
+                <span></span> 
+                <b>abc</b>
+            </label>
+            <label class="checkbox">
+                <input type="checkbox">
+                <span></span> 
+                <b>123</b>
+            </label>
+            <label class="checkbox">
+                <input type="checkbox"> 
+                <span></span>
+                <b>!@#</b>
+            </label>
+        </div>
+    </div>
+
+<script>
+const male = 'abcdefghijklmnoprstuwxyz';
+const duze = 'ABCDEFGHIJKLMNOPRSTUWXYZ';
+const cyfry = '0123456789';
+const znaki = '!@#$%^&*()';
+
+const hasloLabel = document.querySelector('.aa label');
+const generujBtn = document.querySelectorAll('button')[0];
+const kopiujBtn = document.querySelectorAll('button')[1];
+const dlugoscInput = document.getElementById('bb');
+const checkboxy = document.querySelectorAll('.cc input');
+
+generujBtn.addEventListener('click', () => {
+    let znakiDoUzycia = '';
+
+    if (checkboxy[0].checked) znakiDoUzycia += duze;
+    if (checkboxy[1].checked) znakiDoUzycia += male;
+    if (checkboxy[2].checked) znakiDoUzycia += cyfry;
+    if (checkboxy[3].checked) znakiDoUzycia += znaki;
+
+    const dlugosc = parseInt(dlugoscInput.value);
+
+    if (!znakiDoUzycia) {
+        hasloLabel.textContent = 'Wybierz znaki!';
+        return;
+    }
+
+    let haslo = '';
+    for (let i = 0; i < dlugosc; i++) {
+        haslo += znakiDoUzycia.charAt(Math.floor(Math.random() * znakiDoUzycia.length));
+    }
+
+    hasloLabel.textContent = haslo;
+});
+
+kopiujBtn.addEventListener('click', () => {
+    const haslo = hasloLabel.textContent;
+    if (haslo && haslo !== 'Wybierz znaki!') {
+        navigator.clipboard.writeText(haslo);
+    }
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
