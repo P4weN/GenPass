@@ -21,7 +21,10 @@
             <label>Twoje hasło</label>
         </div>
         <button><b>Generuj</b></button>
-        <button><b>Kopiuj</b></button>
+        <div style="position: relative;">
+            <div id="tooltip">Skopiowano</div>
+            <button><b>Kopiuj</b></button>
+        </div>
     </div>
     <br>
     <br>
@@ -67,6 +70,7 @@ const znaki = '!@#$%^&*()';
 const hasloLabel = document.querySelector('.aa label');
 const generujBtn = document.querySelectorAll('button')[0];
 const kopiujBtn = document.querySelectorAll('button')[1];
+const tooltip = document.getElementById('tooltip');
 const dlugoscInput = document.getElementById('bb');
 const checkboxy = document.querySelectorAll('.cc input');
 
@@ -95,17 +99,19 @@ generujBtn.addEventListener('click', () => {
 
 kopiujBtn.addEventListener('click', () => {
     const haslo = hasloLabel.textContent;
-    if (haslo && haslo !== 'Wybierz znaki!') {
-        navigator.clipboard.writeText(haslo);
+
+    if (haslo && haslo !== 'Twoje hasło' && haslo !== 'Wybierz znaki!') {
+        navigator.clipboard.writeText(haslo).then(() => {
+            tooltip.style.display = 'block';
+            tooltip.style.animation = 'wow 2s ease';
+
+            setTimeout(() => {
+                tooltip.style.display = 'none';
+            }, 2000);
+        });
     }
 });
 </script>
-
-
-
-
-
-
 
 </body>
 </html>
