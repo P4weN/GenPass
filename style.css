@@ -160,3 +160,27 @@ button:hover {
 		transform: scale(1);
 	}
 }
+
+
+#tooltip {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ac7800;
+    color: #0e0e0e;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 90%;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+    display: none;
+    animation: wow 2s ease;
+    white-space: nowrap;
+}
+
+@keyframes wow {
+    0% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+}
