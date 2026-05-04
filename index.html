@@ -1,116 +1,223 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Free password generator">
-    <meta name="keywords" content="Genpass, generator, password, hasło">
-    <meta name="author" content="PaweN">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenPass</title>
-    <link rel="shortcut icon" href="Genpass.png">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Generator bezpiecznych haseł">
+<meta name="author" content="PaweN">
+<title>GenPass</title>
+<link rel="shortcut icon" href="Genpass.png">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <br>
-    <h1>Generator haseł <i>GenPass</i></h1>
-    <p id="z"><b>Utwórz silne hasło, aby zabezpieczyć konta w Internecie.</b></p>
-    <br>
-    <br>
-    <div class="a">
-        <div class="aa">
-            <label>Twoje hasło</label>
-        </div>
-        <button><b>Generuj</b></button>
-        <div style="position: relative;">
-            <div id="tooltip">Skopiowano</div>
-            <button><b>Kopiuj</b></button>
-        </div>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">
+        <img src="Genpass.png" alt="logo">
     </div>
-    <br>
-    <br>
-    <br>
-    <div class="b">
-        <p>Długość hasła:</p>
-        <input type="number" min="1" value="12" id="bb">
+    <div>
+      <div class="logo-name">GenPass</div>
+      <span class="logo-tag">Generator bezpiecznych haseł</span>
     </div>
-    <br>
-    <br>
-    <div class="c">
-        <p>Zestaw znaków: </p>
-        <div class="cc">
-            <label class="checkbox">
-                <input type="checkbox">
-                <span></span> 
-                <b>ABC</b>
-            </label>
-            <label class="checkbox">
-                <input type="checkbox">
-                <span></span> 
-                <b>abc</b>
-            </label>
-            <label class="checkbox">
-                <input type="checkbox">
-                <span></span> 
-                <b>123</b>
-            </label>
-            <label class="checkbox">
-                <input type="checkbox"> 
-                <span></span>
-                <b>!@#</b>
-            </label>
+  </div>
+  <div class="header-badge">GenPass v2.0</div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Stwórz <span>silne hasło</span><br>w <span>prawie</span> jednym kliknięciu</h1>
+    <p>Hasła generowane lokalnie — żadne dane nie opuszczają Twojej przeglądarki.</p>
+  </div>
+
+  <div class="pw-box">
+    <div class="pw-display-row">
+      <div class="pw-field">
+        <div class="pw-text placeholder" id="pwText">Kliknij „Generuj hasło"…</div>
+      </div>
+      <div class="pw-actions">
+        <button class="icon-btn" id="copyBtn" title="Kopiuj hasło">
+          <svg id="copyIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="strength-row">
+      <div class="strength-bars">
+        <div class="strength-seg" id="s1"></div>
+        <div class="strength-seg" id="s2"></div>
+        <div class="strength-seg" id="s3"></div>
+        <div class="strength-seg" id="s4"></div>
+      </div>
+      <div class="strength-text" id="strengthText">&nbsp;</div>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl-block">
+        <span class="ctrl-label">Długość hasła</span>
+        <div class="length-row">
+          <input type="range" min="4" max="64" value="16" id="lengthSlider">
+          <div class="length-val" id="lengthVal">16</div>
         </div>
+      </div>
+
+      <div class="ctrl-block">
+        <span class="ctrl-label">Zestaw znaków</span>
+        <div class="checkboxes">
+          <label class="cb-label active" id="lbl0">
+            <input type="checkbox" checked id="ck0">
+            <div class="cb-box"><svg class="cb-check" viewBox="0 0 10 10" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+            <div><div class="cb-title">ABC</div><div class="cb-desc">Wielkie litery</div></div>
+          </label>
+          <label class="cb-label active" id="lbl1">
+            <input type="checkbox" checked id="ck1">
+            <div class="cb-box"><svg class="cb-check" viewBox="0 0 10 10" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+            <div><div class="cb-title">abc</div><div class="cb-desc">Małe litery</div></div>
+          </label>
+          <label class="cb-label active" id="lbl2">
+            <input type="checkbox" checked id="ck2">
+            <div class="cb-box"><svg class="cb-check" viewBox="0 0 10 10" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+            <div><div class="cb-title">123</div><div class="cb-desc">Cyfry</div></div>
+          </label>
+          <label class="cb-label" id="lbl3">
+            <input type="checkbox" id="ck3">
+            <div class="cb-box"><svg class="cb-check" viewBox="0 0 10 10" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+            <div><div class="cb-title">!@#</div><div class="cb-desc">Znaki specjalne</div></div>
+          </label>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="gen-wrap">
+    <button class="gen-btn" id="genBtn">⚡Generuj hasło</button>
+  </div>
+</main>
+
+<footer>
+  <span>GenPass — generator haseł by PaweN</span>
+  <span>Hasła generowane lokalnie · Żadne dane nie są wysyłane</span>
+</footer>
+
+<div class="toast" id="toast">✓ Skopiowano do schowka</div>
+<div class="toast" id="errorToast" style="border-color: var(--red); color: var(--red);"></div>
 
 <script>
-const male = 'abcdefghijklmnoprstuwxyz';
-const duze = 'ABCDEFGHIJKLMNOPRSTUWXYZ';
-const cyfry = '0123456789';
-const znaki = '!@#$%^&*()';
+  const UPPER   = 'ABCDEFGHIJKLMNOPRSTUWXYZ';
+  const LOWER   = 'abcdefghijklmnoprstuwxyz';
+  const DIGITS  = '0123456789';
+  const SPECIAL = '!@#$%^&*()-_=+[]{}|;:,.<>?';
 
-const hasloLabel = document.querySelector('.aa label');
-const generujBtn = document.querySelectorAll('button')[0];
-const kopiujBtn = document.querySelectorAll('button')[1];
-const tooltip = document.getElementById('tooltip');
-const dlugoscInput = document.getElementById('bb');
-const checkboxy = document.querySelectorAll('.cc input');
+  const slider       = document.getElementById('lengthSlider');
+  const lengthVal    = document.getElementById('lengthVal');
+  const pwText       = document.getElementById('pwText');
+  const copyBtn      = document.getElementById('copyBtn');
+  const copyIcon     = document.getElementById('copyIcon');
+  const refreshBtn   = document.getElementById('refreshBtn');
+  const genBtn       = document.getElementById('genBtn');
+  const toast        = document.getElementById('toast');
+  const errorToast = document.getElementById('errorToast');
+  const strengthText = document.getElementById('strengthText');
+  const strengthSegs = ['s1','s2','s3','s4'].map(id => document.getElementById(id));
 
-generujBtn.addEventListener('click', () => {
-    let znakiDoUzycia = '';
+  const checks = [
+    { el: document.getElementById('ck0'), lbl: document.getElementById('lbl0'), chars: UPPER },
+    { el: document.getElementById('ck1'), lbl: document.getElementById('lbl1'), chars: LOWER },
+    { el: document.getElementById('ck2'), lbl: document.getElementById('lbl2'), chars: DIGITS },
+    { el: document.getElementById('ck3'), lbl: document.getElementById('lbl3'), chars: SPECIAL },
+  ];
 
-    if (checkboxy[0].checked) znakiDoUzycia += duze;
-    if (checkboxy[1].checked) znakiDoUzycia += male;
-    if (checkboxy[2].checked) znakiDoUzycia += cyfry;
-    if (checkboxy[3].checked) znakiDoUzycia += znaki;
+  checks.forEach(c => {
+    c.lbl.addEventListener('click', () => {
+      c.el.checked = !c.el.checked;
+      c.lbl.classList.toggle('active', c.el.checked);
+    });
+  });
 
-    const dlugosc = parseInt(dlugoscInput.value);
+  slider.addEventListener('input', () => { lengthVal.textContent = slider.value; });
 
-    if (!znakiDoUzycia) {
-        hasloLabel.textContent = 'Wybierz znaki!';
-        return;
-    }
+  function getStrength(pw) {
+    if (!pw) return { score: 0, label: '', color: '' };
+    let score = 0;
+    if (pw.length >= 8)  score++;
+    if (pw.length >= 12) score++;
+    if (pw.length >= 20) score++;
+    if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) score++;
+    if (/[0-9]/.test(pw)) score++;
+    if (/[^A-Za-z0-9]/.test(pw)) score++;
+    const s = Math.min(4, Math.floor(score * 4 / 6));
+    return {
+      score: s,
+      label: ['', 'Słabe', 'Średnie', 'Silne', 'Bardzo silne'][s],
+      color: ['', '#c44a2a', '#c49a2a', '#8bc42a', '#2ac47a'][s]
+    };
+  }
 
-    let haslo = '';
-    for (let i = 0; i < dlugosc; i++) {
-        haslo += znakiDoUzycia.charAt(Math.floor(Math.random() * znakiDoUzycia.length));
-    }
+  function updateStrength(pw) {
+    const { score, label, color } = getStrength(pw);
+    strengthSegs.forEach((s, i) => { s.style.background = i < score ? color : 'var(--surface2)'; });
+    strengthText.textContent = label || '\u00a0';
+    strengthText.style.color = color || 'var(--text-dim)';
+  }
 
-    hasloLabel.textContent = haslo;
-});
+function generate() {
+  let pool = '';
 
-kopiujBtn.addEventListener('click', () => {
-    const haslo = hasloLabel.textContent;
+  checks.forEach(c => {
+    if (c.el.checked) pool += c.chars;
+  });
 
-    if (haslo && haslo !== 'Twoje hasło' && haslo !== 'Wybierz znaki!') {
-        navigator.clipboard.writeText(haslo).then(() => {
-            tooltip.style.display = 'block';
-            tooltip.style.animation = 'wow 2s ease';
+  if (!pool) {
+    showError('Wybierz co najmniej jeden zestaw znaków.');
+    return;
+  }
 
-            setTimeout(() => {
-                tooltip.style.display = 'none';
-            }, 2000);
-        });
-    }
-});
+  const len = parseInt(slider.value);
+  const arr = new Uint32Array(len);
+  crypto.getRandomValues(arr);
+
+  let pw = '';
+  for (let i = 0; i < len; i++) {
+    pw += pool[arr[i] % pool.length];
+  }
+
+  pwText.textContent = pw;
+  pwText.classList.remove('placeholder');
+  updateStrength(pw);
+}
+
+  function showError(msg) {
+    errorToast.textContent = msg;
+    errorToast.classList.add('show');
+
+    setTimeout(() => {
+      errorToast.classList.remove('show');
+    }, 2000);
+  }
+
+  genBtn.addEventListener('click', generate);
+  if (refreshBtn) {
+  refreshBtn.addEventListener('click', generate);
+  }
+
+  copyBtn.addEventListener('click', () => {
+    const pw = pwText.textContent;
+    if (!pw || pwText.classList.contains('placeholder')) return;
+    navigator.clipboard.writeText(pw).then(() => {
+      copyBtn.classList.add('copied');
+      copyIcon.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+      toast.classList.add('show');
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        copyIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>';
+        toast.classList.remove('show');
+      }, 2000);
+    });
+  });
 </script>
 </body>
 </html>
